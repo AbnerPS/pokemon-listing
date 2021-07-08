@@ -3,6 +3,10 @@ require('dotenv').config();
 
 module.exports = {
 
+    register(request, response) {
+
+    },
+
     login(request, response) {
         const login = request.body.login;
         const passwd = request.body.passwd;

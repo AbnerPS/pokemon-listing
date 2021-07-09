@@ -1,10 +1,27 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const connection = require('../database/connection');
+const encrypt = require('../utils/encryptPasswd');
 
 module.exports = {
 
-    register(request, response) {
+    async register(request, response) {
+        const { name, login, password, image } = request.body;
 
+        const create = await connection('at_users').insert({
+            name: name,
+            login: login,
+            password: encrypt(password),
+            image: image
+        })
+
+        return response.json(!!create)
+    },
+
+    async list(request, response) {
+        const users = await connection('at_users')
+        .select("*");
+
+        return response.json(users);
     },
 
     login(request, response) {
@@ -21,7 +38,7 @@ module.exports = {
         response.status(401).end();
     },
 
-    verify(request, response, next) { // pode ser usado um asyn - awat
+    verify(request, response, next) { // pode ser usado um async - awat
         const token = request.headers.authorization;
         const secret = process.env.SECRET;
         jwt.verify(token, secret, (error, decoded) => {

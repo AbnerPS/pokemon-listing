@@ -6,6 +6,6 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(3000, () => {
-    console.info("Servidor iniciado na porta: 3333...")
+app.listen(3333, () => {
+    console.info("Servidor iniciado: http://localhost:3333");
 });

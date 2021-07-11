@@ -9,7 +9,6 @@ import Pikachu from '../../assets/pokemons/pikachu.png'
 import Psyduck from '../../assets/pokemons/psyduck.png'
 import Snorlax from '../../assets/pokemons/snorlax.png'
 import Squirtle from '../../assets/pokemons/squirtle.png'
-import Wallpaper from '../../assets/pokemon-wallpapers.jpg'
 import api from '../../api';
 import Logo from '../../assets/pokemon-logo.png';
 
@@ -71,11 +70,11 @@ const Form = styled.form`
         border-radius: 0.4em;
         padding: 0 0.4em;
 
-    }
+        &:focus {
+            border: solid 1px #118ab2;
+            box-shadow: 0.2em 0.2em 0.6em #118ab2;
+        }
 
-    .group-input div input:focus {
-        border: solid 1px #118ab2;
-        box-shadow: 0.2em 0.2em 0.6em #118ab2;
     }
 `;
 
@@ -102,6 +101,10 @@ const AvatarList = styled.ul`
         -2px -2px 12px rgba(255, 255, 255, 0.5),
         inset 2px 2px 4px rgba(255, 255, 255, 0.1),
         2px 2px 8px rgba(0, 0, 0, 0.15);
+        -webkit-user-select: none;  
+        -moz-user-select: none;    
+        -ms-user-select: none;      
+        user-select: none;
     }
 
     li:active {
@@ -112,7 +115,7 @@ const AvatarList = styled.ul`
     }
 
     li img {
-        width: 4em;
+        width: 3em;
     }
 `;
 
@@ -132,17 +135,20 @@ const Footer = styled.footer`
             box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.4);
             transition: 0.4s;
         }
+
+        &:nth-child(1) {
+            background-color: #118ab2;
+        }
+
+        &:nth-child(2) {
+            background-color: #ef476f;
+        }
     }
 
-    a:nth-child(1) {
-        background-color: #118ab2;
-    }
-
-    a:nth-child(2) {
-        background-color: #ef476f;
-    }
+    
 
 `;
+
 const Register = () => {
 
     const [name, setName] = useState("");
@@ -153,6 +159,10 @@ const Register = () => {
     const history = useHistory();
 
     function handleSubmit() {
+        if (password && password !== verifyPwd) {
+            return '';
+        }
+
         const data = {
             name,
             login,
@@ -200,7 +210,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <h3>Selecione um Pokémon como avatar de perfil.</h3>
+                    <h4>Selecione um Pokémon como avatar de perfil.</h4>
 
                     <AvatarList>
                         <li>

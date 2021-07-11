@@ -27,14 +27,20 @@ module.exports = {
         const user = await connection('at_users')
         .where('login', login)
         .andWhere('password', encrypt(password))
-        .limit(1)
-        .select("id");
+        .limit(1);
 
         if (user.length > 0) {
-            const secret = process.env.SECRET;
-            const payload = user[0];
-            const token = jwt.sign(payload, secret, { expiresIn: 300 });
-            return response.json({ token });
+            try {
+                const secret = process.env.SECRET;
+                const payload = user[0].id;
+                const name = user[0].name;
+                const image = user[0].image;
+                const token = jwt.sign(payload, secret, { expiresIn: 300 });
+                return response.json({ name, image, token });
+            } catch (error) {
+                return response.status(401).end();
+            }
+            
         }
 
         response.status(401).end();

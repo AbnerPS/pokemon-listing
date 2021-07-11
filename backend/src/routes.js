@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const routes = express.Router();
 
-routes.get("/login", Authorization.login);
+routes.post("/login", Authorization.login);
 routes.post("/register", Authorization.register);
 routes.get("/listUsers", Authorization.list);
 

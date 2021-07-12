@@ -24,7 +24,8 @@ Após fazer o fork e ter todos os arquivos na sua maquina, siga os seguintes pas
 
 ### Iniciar Servidor
 
-Para instalar todas as dependências do servidor, entre na pasta **"./backend"** e execute o seguinte comando:
+Antes de inicializar o servidor, você deve entrar na pasta **"./backend"** e renomear o arquivo **".env-example"** para **".env"**.
+Agora, para instalar todas as dependências do servidor, entre na pasta **"./backend"** e execute o seguinte comando:
 
 ```bash
 $ npm install

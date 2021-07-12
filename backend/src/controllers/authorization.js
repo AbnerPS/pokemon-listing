@@ -32,10 +32,10 @@ module.exports = {
         if (user.length > 0) {
             try {
                 const secret = process.env.SECRET;
-                const payload = user[0].id;
+                const payload = { id: user[0].id };
+                const token = jwt.sign(payload, secret, { expiresIn: 86400 });
                 const name = user[0].name;
                 const image = user[0].image;
-                const token = jwt.sign(payload, secret, { expiresIn: 300 });
                 return response.json({ name, image, token });
             } catch (error) {
                 return response.status(401).end();

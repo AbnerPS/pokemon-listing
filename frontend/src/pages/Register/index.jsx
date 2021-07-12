@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
-import Bullbasaur from '../../assets/pokemons/bullbasaur.png'
-import Charmander from '../../assets/pokemons/charmander.png'
-import Eevee from '../../assets/pokemons/eevee.png'
-import Meowth from '../../assets/pokemons/meowth.png'
-import Pikachu from '../../assets/pokemons/pikachu.png'
-import Psyduck from '../../assets/pokemons/psyduck.png'
-import Snorlax from '../../assets/pokemons/snorlax.png'
-import Squirtle from '../../assets/pokemons/squirtle.png'
+import { Alert } from 'rsuite';
+import Bullbasaur from '../../assets/pokemons/bullbasaur.png';
+import Charmander from '../../assets/pokemons/charmander.png';
+import Eevee from '../../assets/pokemons/eevee.png';
+import Meowth from '../../assets/pokemons/meowth.png';
+import Pikachu from '../../assets/pokemons/pikachu.png';
+import Psyduck from '../../assets/pokemons/psyduck.png';
+import Snorlax from '../../assets/pokemons/snorlax.png';
+import Squirtle from '../../assets/pokemons/squirtle.png';
+import Pokeball from '../../assets/pokeball.png'
 import api from '../../api';
 import Logo from '../../assets/pokemon-logo.png';
 
@@ -18,6 +20,11 @@ const Wrapper = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(${Pokeball});
+    background-repeat: no-repeat;
+    background-position-x: 40em;
+    background-position-y: -20em;
+    background-size: 100em;
 `;
 
 const Container = styled.section`
@@ -30,11 +37,15 @@ const Container = styled.section`
     justify-content: space-between;
     align-items: center;
     padding: 1em 1.5em;
+    background-color: white;
 `;
 
 const Header = styled.header`
+    display: flex;
+    justify-content: center;
+    
     img {
-        width: 20em;
+        width: 90%;
     }
 `;
 
@@ -107,12 +118,19 @@ const AvatarList = styled.ul`
         user-select: none;
     }
 
-    li:active {
+    .selected-avatar {
         box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
         inset -2px -2px 12px rgba(255, 255, 255, 0.5),
         inset 2px 2px 4px rgba(255, 255, 255, 0.1),
         inset 2px 2px 8px rgba(0, 0, 0, 0.15);
     }
+
+    /* li:active {
+        box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+        inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+        inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+    } */
 
     li img {
         width: 3em;
@@ -124,7 +142,7 @@ const Footer = styled.footer`
     width: 100%;
     justify-content: space-around;
 
-    a {
+    a, button {
         text-decoration: none;
         padding: 0.7em 1em;
         border-radius: 0.5em;
@@ -158,8 +176,13 @@ const Register = () => {
     const [image, setImage] = useState("");
     const history = useHistory();
 
+    useEffect(() => {
+        localStorage.clear();
+    });
+
     function handleSubmit() {
-        if (password && password !== verifyPwd) {
+        if (!password || password !== verifyPwd) {
+            Alert.warning("O campo Confirmar Senha deve estar igual a Senha.", 5000);
             return '';
         }
 
@@ -172,9 +195,10 @@ const Register = () => {
 
         api.post('register', data)
         .then(() => {
+            Alert.success("Cadastro realizado com sucesso", 5000);
             history.push('/');
         }).catch((error) => {
-            alert(error);
+            Alert.error("Falha ao cadastrar, por favor, verifique seus dados");
         });
     }
 
@@ -205,7 +229,7 @@ const Register = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="verifyPwd">Confirmar:</label>
+                            <label htmlFor="verifyPwd">Confirmar Senha:</label>
                             <input type="password" id="verifyPwd" value={verifyPwd} placeholder="Confirmar Senha" onChange={e => setVerifyPwd(e.target.value)}/>
                         </div>
                     </div>
@@ -213,35 +237,41 @@ const Register = () => {
                     <h4>Selecione um Pokémon como avatar de perfil.</h4>
 
                     <AvatarList>
-                        <li>
+                        <li className={image.includes('pikachu') ? 'selected-avatar' : ''}>
                             <img src={Pikachu} alt="Avatar do Pikachu" onClick={() => setImage(Pikachu)}/>
                             <label>Pikachu</label>
                         </li>
-                        <li>
+
+                        <li className={image.includes('bullbasaur') ? 'selected-avatar' : ''}>
                             <img src={Bullbasaur} alt="Avatar do Bullbasaur" onClick={() => setImage(Bullbasaur)}/>
                             <label>Bullbasaur</label>
                         </li>
-                        <li>
+
+                        <li className={image.includes('charmander') ? 'selected-avatar' : ''}>
                             <img src={Charmander} alt="Avatar do Charmander" onClick={() => setImage(Charmander)}/>
                             <label>Charmander</label>
                         </li>
-                        <li>
+
+                        <li className={image.includes('squirtle') ? 'selected-avatar' : ''}>
                             <img src={Squirtle} alt="Avatar do Squirtle" onClick={() => setImage(Squirtle)}/>
                             <label>Squirtle</label>
                         </li>
-                        <li>
+
+                        <li className={image.includes('eevee') ? 'selected-avatar' : ''}>
                             <img src={Eevee} alt="Avatar do Eevee" onClick={() => setImage(Eevee)}/>
                             <label>Eevee</label>
                         </li>
-                        <li>
+                        <li className={image.includes('meowth') ? 'selected-avatar' : ''}>
                             <img src={Meowth} alt="Avatar do Meowth" onClick={() => setImage(Meowth)}/>
                             <label>Meowth</label>
                         </li>
-                        <li>
+
+                        <li className={image.includes('psyduck') ? 'selected-avatar' : ''}>
                             <img src={Psyduck} alt="Avatar do Psyduck" onClick={() => setImage(Psyduck)}/>
                             <label>Psyduck</label>
                         </li>
-                        <li>
+
+                        <li className={image.includes('snorlax') ? 'selected-avatar' : ''}>
                             <img src={Snorlax} alt="Avatar do Snorlax" onClick={() => setImage(Snorlax)}/>
                             <label>Snorlax</label>
                         </li>
@@ -249,7 +279,7 @@ const Register = () => {
                 </Form>
                 
                 <Footer id="buttons">
-                    <Link onClick={handleSubmit}>Cadastrar</Link>
+                    <button onClick={handleSubmit}>Cadastrar</button>
                     <Link to="/">Voltar</Link>
                 </Footer>
             </Container>

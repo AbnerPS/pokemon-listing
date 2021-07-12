@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardLogin from '../../components/CardLogin';
 import Pokeball from '../../assets/pokeball.png'
 import styled from 'styled-components'
@@ -21,6 +21,11 @@ const Wrapper = styled.main`
 `;
 
 const Login = () => {
+
+    useEffect(() => {
+        localStorage.clear();
+    });
+    
     return (
         <Wrapper>
             <div>

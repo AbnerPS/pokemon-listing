@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaCodepen, FaLinkedin, FaGithub, FaOptinMonster } from 'react-icons/fa'
+import { FaCodepen, FaLinkedin, FaGithub, FaNetworkWired } from 'react-icons/fa'
 import styled from 'styled-components';
 
 const WrapperFooter = styled.footer`
@@ -86,7 +86,7 @@ const Footer = () => {
         <WrapperFooter>
             <div className="fonte-api">
                 <a href="https://pokeapi.co/docs/v2" target="_blank" rel="noopener noreferrer">
-                    <FaOptinMonster />
+                    <FaNetworkWired />
                     <p>Pokémon API </p>
                 </a>
             </div>

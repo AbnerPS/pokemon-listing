@@ -1,87 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import pokeball from '../../assets/pokeball.png';
-import Pikachu from '../../assets/pokemons/pikachu.png';
-import ImgLogo from '../../assets/pokemon-logo.png';
+import { Dropdown } from 'rsuite'
+import { FaSignOutAlt } from 'react-icons/fa'
+import ImgLogo from '../../assets/pokemon-logo-sf.png';
 
 const NavbarWrapper = styled.header`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 5%;
+    height: 10%;
     padding: 1em;
-    border-bottom: solid 0.2em rgba(0, 0, 0, 0.2);
+    background-color: #3a86ff;
+    color: white;
 `;
 
 const Logo = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 30%;
+    justify-content: center;
+    width: 50%;
 
-    #logo-pokeball {
-        width: 3em;
-    }
-
-    #logo-pokemon {
-        width: 10em;
-    }
-`;
-
-const Menu = styled.ul`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 30%;
-
-    & li {
-        list-style: none;
-        cursor: pointer;
-        background-color: #118ab2;
-        padding: 0.5em;
-        border-radius: 0.4em;
-        color: white;
+    img {
+        width: 30%;
     }
 `;
 
 const UserInfo = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 30%;
+    justify-content: space-evenly;
+    width: 50%;
 
-    #image-frame {
-        box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.4);
-        border-radius: 100%;
-        padding: 0.6em;
-        width: 15%;
-        background-color: #118ab2;
+    .img-user {
+        width: 100%;
+    }
 
-        & img {
-            width: 100%;
+    .div-dropdown {
+        width: 12%;
+        border: solid 2px white;
+        border-radius: 0.5em;
+
+        &:hover {
+            background-color: white;
+        }
+
+        &:hover span{
+            color: #3a86ff;
+        }
+
+        & span {
+            color: white;
         }
     }
 `;
 
 const Header = () => {
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    const history = useHistory();
+
+    useEffect(() => {
+        setImage(localStorage.getItem("image"));
+        setName(localStorage.getItem("name"));
+    }, [])
+
+    function logOut() {
+        history.push("/");
+    }
+    
     return (
         <NavbarWrapper>
             <Logo>
-                <img src={pokeball} alt="Pokeball" id="logo-pokeball"/>
                 <img src={ImgLogo} alt="Logo tipo Pokemon" id="logo-pokemon"/>
             </Logo>
 
-            <Menu>
-                <li>Tipo Grama</li>
-                <li>Tipo Fogo</li>
-                <li>Tipo Agua</li>
-                <li>Tipo Fantasma</li>
-            </Menu>
-
             <UserInfo>
-                <div id="user-name">Seja bem vindo Abner</div>
-                <div id="image-frame">
-                    <img src={Pikachu} alt="Imagem de perfil" />
+                <div id="user-name">
+                    <h5>Seja bem-vindo de volta, <strong>{name}</strong></h5>
+                </div>
+                <div className="div-dropdown">
+                    <Dropdown icon={<img src={image ? image : pokeball} alt="Imagem Usuario" className="img-user"/>} >
+                        <Dropdown.Item onSelect={logOut}><FaSignOutAlt/> Sair</Dropdown.Item>
+                    </Dropdown>
                 </div>
             </UserInfo>
         </NavbarWrapper>

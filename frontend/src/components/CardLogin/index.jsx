@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Alert } from 'rsuite';
 import styled from 'styled-components';
 import api from '../../api';
-import { Link, useHistory } from 'react-router-dom';
-
-import Logo from '../../assets/pokemon-logo.png';
+import Logo from '../../assets/pokemon-pokeball-logo.png';
 
 const CardWrapper = styled.main`
     display: flex;
@@ -23,7 +23,8 @@ const CardWrapper = styled.main`
     }
 
     header img {
-        width: 20em;
+        width: 50%;
+        height: 150%;
     }
 
     section {
@@ -63,10 +64,9 @@ const CardWrapper = styled.main`
     footer {
         display: flex;
         justify-content: space-around;
-        height: 8%;
     }
 
-    footer a {
+    footer a, footer button {
         text-decoration: none;
         padding: 0.7em 1em;
         border-radius: 0.5em;
@@ -89,13 +89,12 @@ const CardWrapper = styled.main`
     }
 `;
 
-const Header = () => {
+const CardLogin = () => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
 
     function handleSubmit() {
-
         const formData = {
             login,
             password,
@@ -103,12 +102,12 @@ const Header = () => {
 
         api.post('login', formData)
         .then(({data}) => {
-            document.cookie = `name=${data.name}`;
-            document.cookie = `image=${data.image}`;
-            document.cookie = `token=${data.token}`;
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('image', data.image);
+            localStorage.setItem('token', data.token);
             history.push('/home');
-        }).catch((error) => {
-            alert(error);
+        }).catch(() => {
+            Alert.error("Login ou Senha incorretos", 5000);
         });
     }
 
@@ -119,16 +118,16 @@ const Header = () => {
             </header>
             <section id="inputs">
                 <label htmlFor="name">Login:</label>
-                <input type="text" name="login" id="login" onChange={e => setLogin(e.target.value)} placeholder="Login"/>
+                <input type="text" name="login" id="login" onKeyPress={e => e.key === 'Enter' && handleSubmit()} onChange={e => setLogin(e.target.value)} placeholder="Login"/>
                 <label htmlFor="password">Senha:</label>
-                <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} placeholder="Senha"/>
+                <input type="password" name="password" id="password" onKeyPress={e => e.key === 'Enter' && handleSubmit()} onChange={e => setPassword(e.target.value)} placeholder="Senha"/>
             </section>
             <footer id="buttons">
-                <Link onClick={handleSubmit}>Entrar</Link>
+                <button onClick={handleSubmit}>Entrar</button>
                 <Link to="/register">Cadastrar</Link>
             </footer>
         </CardWrapper>
     )
 }
 
-export default Header;
+export default CardLogin;

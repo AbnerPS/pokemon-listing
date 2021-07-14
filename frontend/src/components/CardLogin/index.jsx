@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Alert } from 'rsuite';
+import encrypt from '../../utils/encryptPasswd';
 import styled from 'styled-components';
 import api from '../../api';
 import Logo from '../../assets/pokemon-pokeball-logo.png';
@@ -97,7 +98,7 @@ const CardLogin = () => {
     function handleSubmit() {
         const formData = {
             login,
-            password,
+            password: encrypt(password),
         }
 
         api.post('login', formData)

@@ -11,13 +11,12 @@
     <img src="https://img.shields.io/github/license/AbnerPS/pokemon-listing?color=yellow"/>
 </p>
 
-# :bulb: Sobre o projeto 
+# :bulb: Sobre o projeto
 
 Esse projeto consiste em uma Wiki do universo Pokémon, emglobando os animes, filmes e jogos da franquia.
 Nele você poderá fazer um cadastro de usuário, logar no sistema com seu login e senha e por fim vizualizar diversos Pokémons disponiveis na [PokeAPI](https://pokeapi.co/docs/v2).
 
 # ⚙️ Como executar
-
 
 Para executar e testar a aplicação na sua máquina, primeiramente clone o repositório no seu computador.
 Após fazer o fork e ter todos os arquivos na sua maquina, siga os seguintes passos:
@@ -30,11 +29,13 @@ Agora, para instalar todas as dependências do servidor, entre na pasta **"./bac
 ```bash
 $ npm install
 ```
+
 Agora para criar a estrutura base do banco de dados, execute o comando:
 
 ```bash
 $ npm run knex:migrate
 ```
+
 Com as dependências instaladas e o banco de dados pronto, execute este comando para iniciar o servidor:
 
 ```bash
@@ -43,7 +44,8 @@ $ npm start
 
 ### Iniciar App Web
 
-Após iniciar a execução do servidor, inicie a aplicação web entrando na pasta **"./frontend"** e executando os comandos:
+Assim como no servidor, você deve entrar na pasta **"./frontend"** e renomear o arquivo **".env-example"** para **".env"**.
+Após isso, nicie a aplicação web entrando na pasta **"./frontend"** e executando os comandos:
 
 ```bash
 $ npm install
@@ -52,15 +54,17 @@ $ npm start
 
 **E pronto, agora você pode usar à vontade toda a aplicação.** :)
 
-# 🧑🏽‍💻 Tecnologias
+# :computer: Tecnologias
 
 Segue abaixo uma lista com as principais técnologias utilizados no desenvolvimento desta aplicação.
 
 ### ⚛️ Frameworks
-- [x] [Node.js](https://nodejs.org/en/) 
+
+- [x] [Node.js](https://nodejs.org/en/)
 - [x] [React](https://pt-br.reactjs.org/)
 
 ### 📚 Bibliotecas e Dependências
+
 - [x] [Express](https://expressjs.com/)
 - [x] [Axios](https://github.com/axios/axios)
 - [x] [JWT (Json Web Token)](https://jwt.io/)
@@ -68,11 +72,11 @@ Segue abaixo uma lista com as principais técnologias utilizados no desenvolvime
 - [x] [Styled Components](https://styled-components.com/)
 
 ### 🏛 Banco de dados
+
 - [x] [Knex](http://knexjs.org/)
 - [x] [SQLite](https://www.mysql.com/)
 
-
-# :computer: Imagens da Pagina Web
+# :camera: Imagens da Pagina Web
 
 <p align="center">
   <img src="./screenshots/tela-login.png" alt="Tela de Login" width="800">
@@ -83,9 +87,10 @@ Segue abaixo uma lista com as principais técnologias utilizados no desenvolvime
   <img src="./screenshots/modal-detalhes-02.png" alt="Modal de Detalhes 2" width="800">
 </p>
 
- # :tv: Redes Sociais
- Me siga nas minhas redes sociais 😊
- 
+# :tv: Redes Sociais
+
+Me siga nas minhas redes sociais 😊
+
    <p>
   <a href="https://github.com/AbnerPS" target="__blank">
     <img src="https://img.shields.io/badge/-Github-24292E?style=flat-square&labelColor=24292E&logo=github&logoColor=white" alt="Github" />

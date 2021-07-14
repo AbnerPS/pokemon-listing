@@ -26,7 +26,7 @@ module.exports = {
         const { login, password } = request.body;
         const user = await connection('at_users')
         .where('login', login)
-        .andWhere('password', encrypt(password))
+        .andWhere('password', password)
         .limit(1);
 
         if (user.length > 0) {

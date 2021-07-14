@@ -125,13 +125,6 @@ const AvatarList = styled.ul`
         inset 2px 2px 8px rgba(0, 0, 0, 0.15);
     }
 
-    /* li:active {
-        box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
-        inset -2px -2px 12px rgba(255, 255, 255, 0.5),
-        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
-        inset 2px 2px 8px rgba(0, 0, 0, 0.15);
-    } */
-
     li img {
         width: 3em;
     }
@@ -237,42 +230,42 @@ const Register = () => {
                     <h4>Selecione um Pokémon como avatar de perfil.</h4>
 
                     <AvatarList>
-                        <li className={image.includes('pikachu') ? 'selected-avatar' : ''}>
-                            <img src={Pikachu} alt="Avatar do Pikachu" onClick={() => setImage(Pikachu)}/>
+                        <li className={image.includes('pikachu') ? 'selected-avatar' : ''} onClick={() => setImage(Pikachu)} >
+                            <img src={Pikachu} alt="Avatar do Pikachu"/>
                             <label>Pikachu</label>
                         </li>
 
-                        <li className={image.includes('bullbasaur') ? 'selected-avatar' : ''}>
-                            <img src={Bullbasaur} alt="Avatar do Bullbasaur" onClick={() => setImage(Bullbasaur)}/>
+                        <li className={image.includes('bullbasaur') ? 'selected-avatar' : ''} onClick={() => setImage(Bullbasaur)} >
+                            <img src={Bullbasaur} alt="Avatar do Bullbasaur"/>
                             <label>Bullbasaur</label>
                         </li>
 
-                        <li className={image.includes('charmander') ? 'selected-avatar' : ''}>
-                            <img src={Charmander} alt="Avatar do Charmander" onClick={() => setImage(Charmander)}/>
+                        <li className={image.includes('charmander') ? 'selected-avatar' : ''} onClick={() => setImage(Charmander)} >
+                            <img src={Charmander} alt="Avatar do Charmander"/>
                             <label>Charmander</label>
                         </li>
 
-                        <li className={image.includes('squirtle') ? 'selected-avatar' : ''}>
-                            <img src={Squirtle} alt="Avatar do Squirtle" onClick={() => setImage(Squirtle)}/>
+                        <li className={image.includes('squirtle') ? 'selected-avatar' : ''} onClick={() => setImage(Squirtle)} >
+                            <img src={Squirtle} alt="Avatar do Squirtle"/>
                             <label>Squirtle</label>
                         </li>
 
-                        <li className={image.includes('eevee') ? 'selected-avatar' : ''}>
-                            <img src={Eevee} alt="Avatar do Eevee" onClick={() => setImage(Eevee)}/>
+                        <li className={image.includes('eevee') ? 'selected-avatar' : ''} onClick={() => setImage(Eevee)} >
+                            <img src={Eevee} alt="Avatar do Eevee"/>
                             <label>Eevee</label>
                         </li>
-                        <li className={image.includes('meowth') ? 'selected-avatar' : ''}>
-                            <img src={Meowth} alt="Avatar do Meowth" onClick={() => setImage(Meowth)}/>
+                        <li className={image.includes('meowth') ? 'selected-avatar' : ''} onClick={() => setImage(Meowth)} >
+                            <img src={Meowth} alt="Avatar do Meowth"/>
                             <label>Meowth</label>
                         </li>
 
-                        <li className={image.includes('psyduck') ? 'selected-avatar' : ''}>
-                            <img src={Psyduck} alt="Avatar do Psyduck" onClick={() => setImage(Psyduck)}/>
+                        <li className={image.includes('psyduck') ? 'selected-avatar' : ''} onClick={() => setImage(Psyduck)} >
+                            <img src={Psyduck} alt="Avatar do Psyduck"/>
                             <label>Psyduck</label>
                         </li>
 
-                        <li className={image.includes('snorlax') ? 'selected-avatar' : ''}>
-                            <img src={Snorlax} alt="Avatar do Snorlax" onClick={() => setImage(Snorlax)}/>
+                        <li className={image.includes('snorlax') ? 'selected-avatar' : ''} onClick={() => setImage(Snorlax)} >
+                            <img src={Snorlax} alt="Avatar do Snorlax"/>
                             <label>Snorlax</label>
                         </li>
                     </AvatarList>
